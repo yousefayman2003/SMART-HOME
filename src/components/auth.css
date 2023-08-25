@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "CustomFont";
+
+}
+body{
+    background-color: #f5f5f5;
+
+}
+
+/* @font-face {
+    font-family: "CustomFont";
+    src: url("../fonts/RolexLight.woff2");
+} */
+
+/* --------------------------- MOBILE VERSION ------------------------------ */
+.page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75em;
+}
+
+.cover {
+    background-color: white;
+    width: 70%;
+    height: 50%;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+input {
+    border: none;
+    background-color: rgb(229, 226, 226);
+    width: 80%;
+    border-radius: 0.25em;
+    text-align: center;
+    padding: 2em;
+    font-size: 0.75em;
+}
+
+input:focus {
+    outline-color: rgb(32, 177, 255);
+}
+button{
+    width: 40%;
+    height: 3em;
+    background-color: rgb(32, 177, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 0.25em;
+    cursor: pointer;
+
+
+
+
+}
+button:hover{
+    transform: scale(1.25);
+
+}
+.text {
+    position: relative;
+    bottom: 0.5%;
+}
+/* -------------------- TABLET OPTIMIZATION -------------------- */
+@media only screen and (min-device-width: 37em) {
+    .page {
+        font-size: 1em;
+    }
+
+    .cover {
+        width: 60%;
+        height: 70%;
+    }
+}
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }
+/* -------------------- DESKTOP OPTIMIZATION -------------------- */
+@media only screen and (min-device-width: 64em) {
+    .page {
+        font-size: 1.25em;
+    }
+
+    .cover {
+        width: 25%;
+        height: 65%;
+    }
+}
