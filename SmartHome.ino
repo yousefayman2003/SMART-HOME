@@ -36,7 +36,6 @@ String PIR_PATH;
 
 // variables
 const char* ntpServer = "pool.ntp.org";
-unsigned long sendDataPrevMillis = 0;
 int timestamp;
 bool ultrasonicValue = false;
 //bool fireValue = false;
@@ -138,9 +137,9 @@ void setup() {
 
 void loop()
 {
-//  LDR_PATH = "sensor/ldr";
+  LDR_PATH = "sensor/ldr";
   GAS_PATH = "sensor/gas";
-//  FLAME_PATH = "sensor/flame";
+  FLAME_PATH = "sensor/flame";
   ULTRASONIC_PATH = "sensor/ultrasonic";
   PIR_PATH = "sensor/pir";
 
@@ -151,26 +150,26 @@ void loop()
       // Getting sensors readings from esp32
       gasValue = analogRead(gas_pin);
       ultrasonicValue = is_there_someone();
-//      fireValue = digitalRead(flame_pin);
+      fireValue = digitalRead(flame_pin);
       pirValue = digitalRead(pir_pin);
-//      ldrValue = analogRead(ldr_pin);
+      ldrValue = analogRead(ldr_pin);
       
   
       // Getting current timestamp
       timestamp = getTime();
   
       // Setting new PATH
-//      LDR_PATH = PARENT_PATH + String(timestamp) + "/" + LDR_PATH;
+      LDR_PATH = PARENT_PATH + String(timestamp) + "/" + LDR_PATH;
       GAS_PATH = PARENT_PATH + String(timestamp) + "/"  + GAS_PATH;
-//      FLAME_PATH = PARENT_PATH + String(timestamp) + "/"  + FLAME_PATH;
+      FLAME_PATH = PARENT_PATH + String(timestamp) + "/"  + FLAME_PATH;
       ULTRASONIC_PATH = PARENT_PATH + String(timestamp) + "/"  + ULTRASONIC_PATH;
       PIR_PATH = PARENT_PATH + String(timestamp) + "/"  + PIR_PATH;
    
           
       // Writing to RTDB
-//      writeDataInt(LDR_PATH, ldrValue);
+      writeDataInt(LDR_PATH, ldrValue);
       writeDataInt(GAS_PATH, gasValue);
-//      writeDataBool(FLAME_PATH, fireValue);
+      writeDataBool(FLAME_PATH, fireValue);
       writeDataBool(ULTRASONIC_PATH, ultrasonicValue);
       writeDataBool(PIR_PATH, pirValue);
       if (initial)
