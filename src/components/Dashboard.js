@@ -47,7 +47,7 @@ const Dashboard = () => {
           setLastSensorReading(lastReading);
         }
          // Check if the gas reading is more than 1100
-         if (lastSensorReading.sensor?.gas > 1100) {
+         if (lastSensorReading.sensor?.gas > 800) {
           errorNotification('Gas reading is above the threshold (1100)');
         }
         if (dataArray.length > 0 && dataArray[dataArray.length - 1].ultrasonic) {
@@ -59,9 +59,7 @@ const Dashboard = () => {
     }
   };
 
-  // if (emergency.invalid_password || emergency.theif) {
-  //   errorNotification('Emergency condition detected: Invalid password and there is a thief in the house.');
-  // }
+  
   
   const updateLedStatus = (newStatus) => {
     try {
@@ -99,9 +97,12 @@ const Dashboard = () => {
   };
   useEffect(() => {
     // Check if either invalid_password or theif is true
-    if (emergency.invalid_password || emergency.theif) {
-      errorNotification('Emergency condition detected: Invalid password or there is a thief in the house.');
-    }
+  if (emergency.invalid_password) {
+    errorNotification('Emergency condition detected: Invalid password');
+  }
+  if (emergency.theif) {
+    errorNotification('Emergency condition detected: There is a thief in the house.');
+  }
   }, [emergency]);
 
   useEffect(() => {
@@ -117,6 +118,15 @@ const Dashboard = () => {
           const doorStatus = snapshot.val() === 'true';
           setDoorStatus(doorStatus);
         });
+        //Update the state of the emergency
+  // setEmergency((prevState) => ({
+  //   ...prevState,
+  //   invalid_password: true,
+  //   theif: true,
+
+
+  // }));
+
       } catch (error) {
         console.error('Failed to fetch initial LED and door status:', error);
       }
@@ -183,12 +193,20 @@ const Dashboard = () => {
       </div>
 
 
-      <div>
-  <h1>Last Sensor Reading</h1>
+      <div  style={{
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+    fontSize: '24px',
+    background: '#f2f2f2',
+    padding: '20px',
+    width: '400px', // Adjust the width as needed
+    margin: '0 auto', // Center the div horizontally
+    marginTop: '50px', // Add top margin for vertical centering
+  }}>
+  <h1> Sensor Reading</h1>
   {lastSensorReading && lastSensorReading.id ? (
     <div>
       <p>Timestamp: {lastSensorReading.id}</p>
-      {/* <p>Flame: {lastSensorReading?.sensor?.flame ? "true" : "false"}</p> */}
+      
       <p>Gas: {lastSensorReading?.sensor?.gas}</p>
       {/* <p>LDR: {lastSensorReading?.sensor?.ldr}</p> */}
       <p>PIR: {lastSensorReading?.sensor?.pir ? "true" : "false"}</p>
