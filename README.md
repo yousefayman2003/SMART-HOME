@@ -1,5 +1,4 @@
 # ESP32 Smart Home Security System
-
 The Arduino Smart Home Security System is a project that implements a comprehensive security system for a smart home using ESP32 and various sensors. The system includes features such as keypad authentication, gas and fire detection, motion detection, and remote monitoring through a web application with Firebase . In case of an theif or emergency, such as a fire or gas leak, the system triggers an alarm by turning on the buzzer and turning off and on the lamps. This README provides an overview of the functionality of the  functionality.
 
 ## Hardware Requirements
